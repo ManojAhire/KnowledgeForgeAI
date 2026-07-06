@@ -1,7 +1,7 @@
 function Navbar() {
   return (
-    <header>
-      Navbar
+    <header className="navbar " >
+      <h2>KnowledgeForge AI</h2>
     </header>
   );
 }
