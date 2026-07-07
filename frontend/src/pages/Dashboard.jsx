@@ -1,4 +1,5 @@
 import Card from "../components/Card";
+import cards from "../data/Dashboardcard";
 
 function Dashboard() {
   return (
@@ -10,22 +11,9 @@ function Dashboard() {
       </p>
 
       <div className="card-container">
-        <Card 
-          title="📄 Upload PDF"
-          description="Upload industrial documents"
-        />
-        <Card 
-          title="🤖 AI Chat"
-          description="Talk with your documents"
-        />
-        <Card 
-          title="📚 Documents"
-          description="View uploaded documents"
-        />
-        <Card 
-          title="✅ Compliance"
-          description="Check compliance reports"
-        />
+        {cards.map((card) => (
+          <Card key={card.id} title={card.title} description={card.description} />
+        ))}
       </div>
 
 
