@@ -25,16 +25,35 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #1f2937;
-
+  background: #1f2937;
+  border-right: 1px solid #374151;
   padding: 20px;
-
-  background-color: 1px solid #374151;
 }
 
-.sidebar p {
-  margin: 18px 0;
-  cursor: pointer;
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 15px;
+  margin-bottom: 10px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+  color: #d1d5db;
+
+  transition: all 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background: #374151;
+  color: white;
+}
+
+.sidebar-item.active {
+  background: #487ced;
+  color: rgb(5, 4, 4);
 }
 
 .dashboard {
@@ -69,9 +88,8 @@ body {
 }
 
 .card:hover {
-  transform: scale(1.05);
+  transform: scale(1.05)  translateY(-5px);
   background-color: #2563eb;
-  transform: translateY(-5px);
   border-color: #3b82f6;
   cursor: pointer;
 }

@@ -1,5 +1,5 @@
 import Card from "../components/Card";
-import cards from "../data/Dashboardcard";
+import cards from "../data/dashboardcard";
 
 function Dashboard() {
   return (
