@@ -105,3 +105,44 @@ body {
 .card:hover h2, .card:hover p {
   color: white;
 }
+
+.upload-box {
+  margin-top: 30px;
+  margin-bottom: 25px;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 35px;
+  background: #2563eb;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.upload-label:hover {
+  background: #1d4ed8;
+}
+
+
+
+.selected-file {
+  margin: 20px 0;
+}
+
+.upload-b {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.upload-b:hover {
+  background: #15803d;
+}
