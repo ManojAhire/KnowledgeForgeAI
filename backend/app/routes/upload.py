@@ -4,6 +4,7 @@ import os
 
 from app.services.pdf_service import extract_text_from_pdf
 from app.services.chunk_service import chunk_text
+from app.services.document_store import save_document
 
 router = APIRouter()
 
@@ -22,18 +23,13 @@ async def upload_pdf(file: UploadFile = File(...)):
 
     pdf_data = extract_text_from_pdf(file_path)
 
+    save_document(pdf_data["text"])
+
     chunks = chunk_text(pdf_data["text"])
 
     return {
-
         "filename": file.filename,
-
         "pages": pdf_data["pages"],
-
         "total_chunks": len(chunks),
-
-        "first_chunk": chunks[0] if chunks else "",
-
         "message": "PDF uploaded successfully"
-
     }
