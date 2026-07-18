@@ -27,15 +27,15 @@ async def upload_pdf(file: UploadFile = File(...)):
 
     save_document(pdf_data["text"])
 
+    chunks = chunk_text(pdf_data["text"])
+
     analysis = analyze_document(pdf_data["text"])
 
     save_analysis(analysis)
-
-    chunks = chunk_text(pdf_data["text"])
 
     return {
         "filename": file.filename,
         "pages": pdf_data["pages"],
         "total_chunks": len(chunks),
-        "message": "PDF uploaded successfully"
+        "message": "PDF uploaded and analyzed successfully"
     }

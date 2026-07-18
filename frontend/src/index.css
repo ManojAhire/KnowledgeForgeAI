@@ -216,3 +216,51 @@ body {
     margin-bottom:10px;
 
 }
+
+.card ul {
+  padding-left: 20px;
+}
+
+.card li {
+  margin-bottom: 8px;
+  color: #d1d5db;
+}
+
+.card:first-child {
+  width: 100%;
+}
+
+.graph-node {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.graph-node small {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.graph-container {
+  height: 650px;
+  margin-top: 30px;
+  background-color: #111827;
+  border: 1px solid #374151;
+  border-radius: 12px;
+}
+
+.react-flow__node-default {
+  background: #1f2937;
+  color: white;
+  border: 1px solid #60a5fa;
+  border-radius: 10px;
+  padding: 12px;
+  width: 180px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.react-flow__edge-text {
+  font-size: 11px;
+  fill: white;
+}

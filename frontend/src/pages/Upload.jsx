@@ -1,8 +1,11 @@
-import {useState} from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UploadBox from "../components/UploadBox";
 
 
 function Upload() {
+
+    const navigate = useNavigate();
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -32,6 +35,10 @@ function Upload() {
     console.log(data);
 
     alert(data.message);
+
+    if (response.ok) {
+    navigate("/");
+}
 
   } catch (error) {
 
