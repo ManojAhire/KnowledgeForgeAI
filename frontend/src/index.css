@@ -264,3 +264,62 @@ body {
   font-size: 11px;
   fill: white;
 }
+
+.compliance-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-top: 35px;
+}
+
+
+.compliance-card {
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+
+.compliance-card h2 {
+  margin-bottom: 8px;
+}
+
+
+.count {
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+
+.compliance-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid #374151;
+  line-height: 1.5;
+}
+
+
+.check {
+  color: #22c55e;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.warning {
+  color: #f59e0b;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+@media (max-width: 900px) {
+
+  .compliance-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
