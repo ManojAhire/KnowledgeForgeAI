@@ -323,3 +323,16 @@ body {
   }
 
 }
+
+.summary-section {
+  margin-top: 35px;
+  padding: 25px;
+  background-color: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  line-height: 1.7;
+}
+
+.summary-section h2 {
+  margin-bottom: 15px;
+}

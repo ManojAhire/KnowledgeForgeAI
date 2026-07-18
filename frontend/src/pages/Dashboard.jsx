@@ -1,70 +1,155 @@
 import { useEffect, useState } from "react";
-import SummaryCard from "../components/SummaryCard";
+
+import { getSummary } from "../services/api";
+
 
 function Dashboard() {
-  const [analysis, setAnalysis] = useState(null);
-  const [loading, setLoading] = useState(true);
+
+
+  const [data, setData] = useState(null);
+
 
   useEffect(() => {
-    fetchSummary();
+
+
+    async function loadData() {
+
+      try {
+
+        const result = await getSummary();
+
+        setData(result);
+
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
+    }
+
+
+    loadData();
+
+
   }, []);
 
-  async function fetchSummary() {
-    try {
-      const response = await fetch("http://127.0.0.1:8000/summary");
-      const data = await response.json();
 
-      setAnalysis(data);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
-  }
+  if (!data) {
 
-  if (loading) {
-    return <div className="dashboard"><h2>Loading...</h2></div>;
-  }
-
-  if (!analysis || analysis.message) {
     return (
+
       <div className="dashboard">
-        <h2>Upload a PDF first.</h2>
+
+        <h2>
+          Loading Dashboard...
+        </h2>
+
       </div>
+
     );
+
   }
+
 
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
 
-      <p>AI generated insights from your document.</p>
+    <div className="dashboard">
+
+
+      <h1>
+        Knowledge Dashboard
+      </h1>
+
+
+      <p>
+        AI-powered document intelligence overview.
+      </p>
+
 
       <div className="card-container">
 
-        <SummaryCard
-          title="Executive Summary"
-          items={analysis.summary}
-        />
 
-        <SummaryCard
-          title="Safety Highlights"
-          items={analysis.safety}
-        />
+        <div className="card">
 
-        <SummaryCard
-          title="Maintenance"
-          items={analysis.maintenance}
-        />
+          <h2>
+            Safety Requirements
+          </h2>
 
-        <SummaryCard
-          title="Risks"
-          items={analysis.risks}
-        />
+
+          <p>
+            {data.safety.length}
+          </p>
+
+        </div>
+
+
+        <div className="card">
+
+          <h2>
+            Maintenance Tasks
+          </h2>
+
+
+          <p>
+            {data.maintenance.length}
+          </p>
+
+        </div>
+
+
+        <div className="card">
+
+          <h2>
+            Identified Risks
+          </h2>
+
+
+          <p>
+            {data.risks.length}
+          </p>
+
+        </div>
+
+
+        <div className="card">
+
+          <h2>
+            Knowledge Nodes
+          </h2>
+
+
+          <p>
+            {data.graph.nodes.length}
+          </p>
+
+        </div>
+
 
       </div>
+
+
+      <div className="summary-section">
+
+
+        <h2>
+          Document Summary
+        </h2>
+
+
+        <p>
+          {data.summary}
+        </p>
+
+
+      </div>
+
+
     </div>
+
   );
+
 }
+
 
 export default Dashboard;
