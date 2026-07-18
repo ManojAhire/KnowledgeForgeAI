@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 
 import { getSummary } from "../services/api";
 
@@ -129,17 +129,78 @@ function Dashboard() {
       </div>
 
 
-      <div className="summary-section">
-
+            <div className="summary-section">
 
         <h2>
           Document Summary
         </h2>
 
-
         <p>
           {data.summary}
         </p>
+
+      </div>
+
+
+      <div className="dashboard-sections">
+
+
+        <div className="dashboard-section">
+
+          <h2>
+            Top Risks
+          </h2>
+
+
+          {data.risks.slice(0, 5).map((risk, index) => (
+
+            <div
+              className="dashboard-list-item"
+              key={index}
+            >
+
+              <span className="risk-icon">
+                !
+              </span>
+
+              <span>
+                {risk}
+              </span>
+
+            </div>
+
+          ))}
+
+        </div>
+
+
+        <div className="dashboard-section">
+
+          <h2>
+            Maintenance Tasks
+          </h2>
+
+
+          {data.maintenance.slice(0, 5).map((task, index) => (
+
+            <div
+              className="dashboard-list-item"
+              key={index}
+            >
+
+              <span className="task-icon">
+                ✓
+              </span>
+
+              <span>
+                {task}
+              </span>
+
+            </div>
+
+          ))}
+
+        </div>
 
 
       </div>
