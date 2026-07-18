@@ -1,88 +1,175 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import UploadBox from "../components/UploadBox";
-
 
 
 function Upload() {
 
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    const [selectedFile, setSelectedFile] = useState(null);
+  const [error, setError] = useState(null);
 
-    const handleUpload = async () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+
+  const handleUpload = async () => {
+
+
+    if (!selectedFile) {
+
+      alert("Please select a PDF.");
+
+      return;
+
+    }
+
+
+    const formData = new FormData();
+
+    formData.append("file", selectedFile);
+
+
+    try {
+
 
       setLoading(true);
 
-  if (!selectedFile) {
-    alert("Please select a PDF.");
-    return;
-  }
+      setError(null);
 
-  const formData = new FormData();
 
-  formData.append("file", selectedFile);
+      const response = await fetch(
 
-  try {
+        "http://127.0.0.1:8000/upload",
 
-    const response = await fetch(
-      "http://127.0.0.1:8000/upload",
-      {
-        method: "POST",
-        body: formData,
+        {
+
+          method: "POST",
+
+          body: formData,
+
+        }
+
+      );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          "Upload failed"
+        );
+
       }
-    );
 
-    const data = await response.json();
 
-    console.log(data);
+      const data = await response.json();
 
-    alert(data.message);
 
-    if (response.ok) {
-    navigate("/");
-}
+      console.log(data);
 
-  } catch (error) {
 
-    console.error(error);
+      alert(
+        "Document uploaded and analyzed successfully!"
+      );
 
-    alert("Upload failed.");
 
-  }
-  setLoading(false);
+    } catch (error) {
 
-};
-    
+
+      console.error(error);
+
+
+      setError(
+        "Upload failed. Please try again."
+      );
+
+
+    } finally {
+
+
+      setLoading(false);
+
+
+    }
+
+  };
+
 
   return (
-    <div className="dashboard" >
-        <h1>Upload PDF</h1>
+
+    <div className="dashboard">
+
+
+      <h1>
+        Upload PDF
+      </h1>
+
+
+      <p>
+        Select an industrial document.
+      </p>
+
+
+      <UploadBox
+        onFileSelect={setSelectedFile}
+      />
+
+
+      <div className="selected-file">
+
+
+        <h3>
+          Selected File
+        </h3>
+
+
         <p>
-            Select an industrial document.
+
+          {selectedFile
+
+            ? selectedFile.name
+
+            : "No file selected"}
+
         </p>
-        <UploadBox onFileSelect={setSelectedFile} />
 
-        <div className="selected-file">
-            <h3>Selected File</h3>
 
-            <p>
-                {selectedFile ? selectedFile.name : "No file selected"}
-            </p>
+      </div>
 
-        </div>
 
-        <button
-  className="upload-b"
-  onClick={handleUpload}
-  disabled={loading}
->
-  {loading ? "Analyzing Document..." : "Upload"}
-</button>
-        
+      {error && (
+
+        <p className="upload-error">
+
+          {error}
+
+        </p>
+
+      )}
+
+
+      <button
+
+        className="upload-b"
+
+        onClick={handleUpload}
+
+        disabled={loading}
+
+      >
+
+        {loading
+
+          ? "Analyzing Document..."
+
+          : "Upload"}
+
+      </button>
+
+
     </div>
+
   );
+
 }
 
-export default Upload;  
+
+export default Upload;
