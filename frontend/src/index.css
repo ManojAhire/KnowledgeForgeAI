@@ -17,13 +17,44 @@ body {
   background-color: #1f2937;
   display: flex;
   align-items: center;
-  padding-left: 30px;
+  justify-content: space-between;
+  padding: 0 30px;
   border-bottom: 1px solid #374151;
 }
 
 
-.navbar h2 {
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.navbar-brand h2 {
   font-size: 24px;
+}
+
+
+.navbar-brand span {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+
+.navbar-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #86efac;
+  font-size: 14px;
+}
+
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
 }
 
 
@@ -527,4 +558,16 @@ body {
 
 .setting-row strong {
   color: #22c55e;
+}
+
+.dashboard-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 8px 14px;
+  background-color: #14532d;
+  color: #86efac;
+  border-radius: 20px;
+  font-size: 14px;
 }
