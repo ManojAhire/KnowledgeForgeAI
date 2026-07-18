@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import UploadBox from "../components/UploadBox";
 
 
+
 function Upload() {
 
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleUpload = async () => {
+
+      setLoading(true);
 
   if (!selectedFile) {
     alert("Please select a PDF.");
@@ -47,6 +51,7 @@ function Upload() {
     alert("Upload failed.");
 
   }
+  setLoading(false);
 
 };
     
@@ -68,9 +73,13 @@ function Upload() {
 
         </div>
 
-        <button className="upload-b" onClick={handleUpload}>
-            Upload
-        </button>
+        <button
+  className="upload-b"
+  onClick={handleUpload}
+  disabled={loading}
+>
+  {loading ? "Analyzing Document..." : "Upload"}
+</button>
         
     </div>
   );

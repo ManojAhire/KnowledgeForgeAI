@@ -458,3 +458,8 @@ body {
   }
 
 }
+
+.upload-b:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
